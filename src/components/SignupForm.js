@@ -15,6 +15,8 @@ function SignupForm({setIsLoggedIn}) {
 
     const [showPassword, setShowPassword] = useState(false)
 
+    const [showConfirmPassword, setShowConfirmPassword] = useState(false)
+
     function changeHandler(event) {
         setFormData((prevData)=>(
             {
@@ -129,15 +131,15 @@ function SignupForm({setIsLoggedIn}) {
                         <input
                         required
                           className='bg-richblack-800 rounded-[0.5rem] text-richblack-5 w-full p-[12px]'
-                        type= {showPassword ? ('text') : ('password')} 
+                        type= {showConfirmPassword ? ('text') : ('password')} 
                         name='confirmpassword'
                         onChange={changeHandler}
                         placeholder='Enter Your Password'
                         value={formData.confirmpassword}
                         />
                             <span className='absolute right-3 top-[40px] cursor-pointer'
-                             onClick={()=> setShowPassword((prev)=> !prev)}>
-                                            {showPassword ? (<AiOutlineEyeInvisible  fontSize={20} fill='#AFB2BF'/>) 
+                             onClick={()=> setShowConfirmPassword((prev)=> !prev)}>
+                                            {showConfirmPassword ? (<AiOutlineEyeInvisible  fontSize={20} fill='#AFB2BF'/>) 
                                             : (<AiOutlineEye  fontSize={20} fill='#AFB2BF'/>) }
                             </span>
                 </label>

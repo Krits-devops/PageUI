@@ -11,6 +11,8 @@ function SignupForm({setIsLoggedIn}) {
 
     const navigate = useNavigate();
 
+    const [accountType, setAccountType] = useState('student')
+
     const [showPassword, setShowPassword] = useState(false)
 
     function changeHandler(event) {
@@ -44,11 +46,19 @@ function SignupForm({setIsLoggedIn}) {
 
         {/* student- instructor tab */}
 
-        <div>
-            <button>
+        <div className='flex bg-richblack-800 p-1 gap-x-2 my-6 rounded-full max-w-max'>
+            <button 
+            className={`${accountType=== 'student' 
+                ? 'bg-richblack-900 text-richblack-5'
+                : 'bg-transparent text-richblack-200'} py-2 px-5 rounded-full transition-all duration-200`}
+            onClick={()=> setAccountType('student')}>
                 Student
             </button>
-            <button>
+            <button 
+                        className={`${accountType=== 'instructor' 
+                            ? 'bg-richblack-900 text-richblack-5'
+                            : 'bg-transparent text-richblack-200'} py-2 px-5 rounded-full transition-all duration-200`}
+            onClick={()=> setAccountType('instructor')}>
                 Instructor
             </button>
         </div>
@@ -57,11 +67,12 @@ function SignupForm({setIsLoggedIn}) {
 
         <form onSubmit={submitHandler}>
 
-            <div>
+            <div className='w-full h-full flex justify-between'>
                 <label>
-                    <p>First Name <sup>*</sup></p>
+                    <p className='text-[0.875rem] text-richblack-5 mb-1 leading-[1.375rem]'>First Name <sup className='text-pink-200'>*</sup></p>
                     <input
                     required
+                      className='bg-richblack-800 rounded-[0.5rem] text-richblack-5 w-full p-[12px]'
                     type='text' name='firstname'
                     onChange={changeHandler}
                     placeholder='Enter Your Name'
@@ -69,8 +80,9 @@ function SignupForm({setIsLoggedIn}) {
                     />
                 </label>
                 <label>
-                    <p>Last Name <sup>*</sup></p>
+                    <p className='text-[0.875rem] text-richblack-5 mb-1 leading-[1.375rem]'>Last Name <sup className='text-pink-200'>*</sup></p>
                     <input
+                      className='bg-richblack-800 rounded-[0.5rem] text-richblack-5 w-full p-[12px]'
                     required
                     type='text' name='lastname'
                     onChange={changeHandler}
@@ -81,8 +93,9 @@ function SignupForm({setIsLoggedIn}) {
             </div>
 
             <label>
-                    <p>Email <sup>*</sup></p>
+                    <p className='text-[0.875rem] text-richblack-5 mb-1 leading-[1.375rem]'>Email <sup className='text-pink-200'>*</sup></p>
                     <input
+                      className='bg-richblack-800 rounded-[0.5rem] text-richblack-5 w-full p-[12px]'
                     required
                     type='email' name='email'
                     onChange={changeHandler}
@@ -91,10 +104,11 @@ function SignupForm({setIsLoggedIn}) {
                     />
             </label>
 
-            <div>
-            <label>
-                    <p>Password <sup>*</sup></p>
+            <div className='flex gap-x-4'>
+            <label className='w-full relative'>
+                    <p className='text-[0.875rem] text-richblack-5 mb-1 leading-[1.375rem]'>Password <sup className='text-pink-200'>*</sup></p>
                     <input
+                      className='bg-richblack-800 rounded-[0.5rem] text-richblack-5 w-full p-[12px]'
                     required
                     type= {showPassword ? ('text') : ('password')} 
                     name='password'
@@ -102,30 +116,36 @@ function SignupForm({setIsLoggedIn}) {
                     placeholder='Enter Your password'
                     value={formData.password}
                     />
-                        <span onClick={()=> setShowPassword((prev)=> !prev)}>
-                                        {showPassword ? (<AiOutlineEyeInvisible/>) : (<AiOutlineEye/>) }
+                        <span className='absolute right-3 top-[40px] cursor-pointer'
+                         onClick={()=> setShowPassword((prev)=> !prev)}>
+                                        {showPassword ? (<AiOutlineEyeInvisible fontSize={20} fill='#AFB2BF'/>) 
+                                        : (<AiOutlineEye fontSize={20} fill='#AFB2BF'/>) }
                         </span>
                 </label>
 
-                <label>
+                <label className='w-full relative'>
 
-                    <p> ConfirmPassword <sup>*</sup></p>
+                    <p className='text-[0.875rem] text-richblack-5 mb-1 leading-[1.375rem]'> ConfirmPassword <sup className='text-pink-200'>*</sup></p>
                         <input
                         required
+                          className='bg-richblack-800 rounded-[0.5rem] text-richblack-5 w-full p-[12px]'
                         type= {showPassword ? ('text') : ('password')} 
                         name='confirmpassword'
                         onChange={changeHandler}
                         placeholder='Enter Your Password'
                         value={formData.confirmpassword}
                         />
-                            <span onClick={()=> setShowPassword((prev)=> !prev)}>
-                                            {showPassword ? (<AiOutlineEyeInvisible/>) : (<AiOutlineEye/>) }
+                            <span className='absolute right-3 top-[40px] cursor-pointer'
+                             onClick={()=> setShowPassword((prev)=> !prev)}>
+                                            {showPassword ? (<AiOutlineEyeInvisible  fontSize={20} fill='#AFB2BF'/>) 
+                                            : (<AiOutlineEye  fontSize={20} fill='#AFB2BF'/>) }
                             </span>
                 </label>
 
             </div>
 
-            <button>
+            <button className='w-full flex justify-center items-center bg-yellow-50 font-medium 
+        rounded-[8px] px-[12px] py-[8px] mt-5'>
                 Create Account
             </button>
             
